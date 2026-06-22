@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetAudit // Scan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="scanner-app">
+        <header class="scanner-header">
+            <h1>Network Scanner</h1>
+            <p>Target identification and audit interface.</p>
+        </header>
+
+        <main class="scanner-body">
+            <div class="scanner-panel">
+                <form method="POST" action="/scan">
+                    <input type="text" name="subnet" placeholder="Enter IP (e.g. 192.168.1.1)" class="button button-secondary" style="width: 100%; margin-bottom: 1rem;">
+                    <button type="submit" class="button button-primary">Start Scan</button>
+                </form>
+            </div>
+
+            <div class="scanner-screen">
+                <div class="scan-window">
+                    <div class="scan-grid"></div>
+                    <div class="scan-line"></div>
+                </div>
+                
+                {% if response is defined %}
+                    <div class="scan-status">
+                        {% if response == 0 %}
+                            <span style="color: #3ee1af;">[+] Host is ONLINE</span> 
+                        {% else %}
+                            <span style="color: #ff6b6b;">[-] Host is OFFLINE</span>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

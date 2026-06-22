@@ -1,0 +1,222 @@
+/* Global page reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #1b2735 0%, #090a0f 55%);
+  color: #f3f4f6;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.scanner-app {
+  width: min(100%, 900px);
+  background: rgba(12, 17, 25, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.38);
+  overflow: hidden;
+}
+
+.scanner-header {
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(90deg, rgba(26, 34, 52, 0.98), rgba(15, 21, 32, 0.98));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.scanner-header h1 {
+  font-size: 1.45rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+.scanner-header p {
+  color: #b8c5d7;
+  line-height: 1.6;
+}
+
+.scanner-body {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.scanner-panel {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 1.25rem;
+  background: rgba(8, 12, 18, 0.72);
+}
+
+.scanner-screen {
+  position: relative;
+  min-height: 360px;
+  background: linear-gradient(180deg, rgba(6, 12, 24, 0.95), rgba(12, 18, 30, 0.98));
+  border: 1px solid rgba(79, 193, 255, 0.12);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.scan-window {
+  position: absolute;
+  inset: 1.25rem;
+  border: 2px dashed rgba(79, 193, 255, 0.4);
+  border-radius: 16px;
+  background: rgba(5, 11, 19, 0.55);
+}
+
+.scan-grid {
+  position: absolute;
+  inset: 1.5rem;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.95), transparent);
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+.scan-status {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #8ee3c5;
+  font-size: 0.95rem;
+}
+
+.scan-status::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #3ee1af;
+  box-shadow: 0 0 14px rgba(62, 225, 175, 0.6);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.4rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button-primary {
+  background: linear-gradient(135deg, #0abf9a, #2dd4bf);
+  color: #081220;
+  box-shadow: 0 12px 22px rgba(15, 211, 166, 0.24);
+}
+
+.button-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.details {
+  display: grid;
+  gap: 1rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.detail-row span {
+  color: #cbd5e1;
+}
+
+.detail-row strong {
+  color: #ffffff;
+}
+
+.results {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.result-card {
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  background: rgba(12, 18, 30, 0.85);
+  border: 1px solid rgba(79, 193, 255, 0.1);
+}
+
+.result-card h2 {
+  font-size: 1rem;
+  margin-bottom: 0.45rem;
+}
+
+.result-card p {
+  color: #9ca3af;
+  line-height: 1.55;
+}
+
+@media (max-width: 680px) {
+  .scanner-app {
+    border-radius: 18px;
+  }
+
+  .scanner-header,
+  .scanner-body,
+  .scanner-panel {
+    padding: 1rem;
+  }
+
+  .scanner-screen {
+    min-height: 260px;
+  }
+
+  .scan-status {
+    position: static;
+    padding-top: 0.75rem;
+  }
+}
